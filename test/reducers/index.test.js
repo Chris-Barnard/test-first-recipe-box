@@ -1,23 +1,27 @@
 import expect from 'expect';
 import reducer from '../../src/reducers/index';
 
-describe('root reducer', () => {
+describe('reducers', () => {
 
-	// INITIALIZE
-	// ********************************
+  describe('root reducer', () => {
 
-	it('should provide an initial state', () => {
+    // INITIALIZE
+    // ********************************
 
-		const initialState = undefined
+    it('should provide an initial state', () => {
 
-		const action = {
-			type : '@@INIT'
-		}
+      const initialState = undefined
 
-		expect(reducer(initialState, action))
-			.toExist()
-			.toIncludeKey('counter');
+      const action = {
+        type : '@@INIT'
+      }
 
-	})
+      expect(reducer(initialState, action))
+        .toExist()
+        .toIncludeKey('counter');
 
-});
+    })
+
+  });
+
+})

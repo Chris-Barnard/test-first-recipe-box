@@ -1,5 +1,5 @@
 import React from 'react'
-import ReactDOM from 'react-dom'
+// import ReactDOM from 'react-dom'
 import { createRenderer } from 'react-addons-test-utils'
 
 import expect from 'expect'
@@ -8,36 +8,99 @@ import Counter from '../../src/components/Counter'
 
 expect.extend(expectJSX)
 
-describe('Counter Component', () => {
+describe('components', () => {
+  
+  describe('Counter component', () => {
 
-  let hasClicked = false
-  let click = () => hasClicked = true
-  let renderer = createRenderer()
-  renderer.render(<Counter value={12} increment={click} />)
-  let actualOutput = renderer.getRenderOutput()
-    
-  it('should render the current counter value', () => {
+    // Render Current Value
+    // ********************************
+      
+    it('should render the current counter value', () => {
 
-    let expectedOutput = <p>Counter Value : 12</p>
+      // code to create render object to test
+      let renderer = createRenderer()
+      renderer.render(<Counter value={12} />)
+      let actualOutput = renderer.getRenderOutput()
 
-    expect(actualOutput).toIncludeJSX(expectedOutput)  
+      let expectedOutput = <p>Counter Value : 12</p>
 
-  })
+      expect(actualOutput).toIncludeJSX(expectedOutput)  
 
-  it('should render the increment button', () => {
+    })
 
-    let expectedOutput = <button onClick={(x)=>x} >Increment</button>
+    // Render Increment Button
+    // ********************************
 
-    expect(actualOutput).toIncludeJSX(expectedOutput)
+    it('should render the increment button', () => {
 
-  })
+      // code to create render object to test
+      let renderer = createRenderer()
+      renderer.render(<Counter />)
+      let actualOutput = renderer.getRenderOutput()
 
-  it('clicks the increment button', () => {  
+      let expectedOutput = <button onClick={undefined} >Increment</button>
 
-    // onClick event for the button
-    actualOutput.props.children[1].props.onClick()
+      expect(actualOutput).toIncludeJSX(expectedOutput)
 
-    expect(hasClicked).toBe(true)
+    })
+
+    // Click Increment Button
+    // ********************************
+
+    it('clicks the increment button', () => {  
+
+      // code to test the click event
+      let hasClicked = false
+      let click = () => hasClicked = true
+
+      // code to create render object to test
+      let renderer = createRenderer()
+      renderer.render(<Counter increment={click} />)
+      let actualOutput = renderer.getRenderOutput()
+
+      // onClick event for the button
+      actualOutput.props.children[1].props.onClick()
+
+      expect(hasClicked).toBe(true)
+
+    })
+
+    // Render Reset Button
+    // ********************************
+
+    it('should render the reset button', () => {
+
+      // code to create render object to test
+      let renderer = createRenderer()
+      renderer.render(<Counter />)
+      let actualOutput = renderer.getRenderOutput()
+
+      let expectedOutput = <button onClick={undefined} >Reset</button>
+
+      expect(actualOutput).toIncludeJSX(expectedOutput)
+
+    })
+
+    // Click Reset Button
+    // ********************************
+
+    it('clicks the reset button', () => {  
+
+      // code to test the click event
+      let hasClicked = false
+      let click = () => hasClicked = true
+
+      // code to create render object to test
+      let renderer = createRenderer()
+      renderer.render(<Counter reset={click} />)
+      let actualOutput = renderer.getRenderOutput()
+
+      // onClick event for the button
+      actualOutput.props.children[2].props.onClick()
+
+      expect(hasClicked).toBe(true)
+
+    })
 
   })
 

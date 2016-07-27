@@ -1,5 +1,12 @@
 export function incrementCounter() {
+  return {
+    type : 'INCREMENT_COUNTER'
+  }
+}
+
+export function setCounter(value) {
 	return {
-		type : 'INCREMENT_COUNTER'
+		type : 'SET_COUNTER',
+		value
 	}
 }

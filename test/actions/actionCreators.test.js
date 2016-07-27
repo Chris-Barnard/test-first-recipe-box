@@ -1,7 +1,7 @@
 import expect from 'expect'
-import * as actionCreators from '../../src/actions/actionCreators'
+import * as actions from '../../src/actions/actionCreators'
 
-describe('action creators', () => {
+describe('actions', () => {
  
   // INCREMENT_COUNTER
   // ********************************
@@ -12,8 +12,25 @@ describe('action creators', () => {
       type : 'INCREMENT_COUNTER'
     }
 
-    expect(actionCreators.incrementCounter()).toEqual(expectedAction)
+    expect(actions.incrementCounter()).toEqual(expectedAction)
 
   })
+
+  // RESET_COUNTER
+  // ********************************
+
+  it('should create the SET_COUNTER action', () => {
+
+  	const expectedAction = {
+  		type : 'SET_COUNTER', 
+  		value : 13
+  	}
+
+  	expect(actions.setCounter(13)).toEqual(expectedAction)
+
+  })
+
+  // NEXT_ACTION
+  // ********************************
 
 })
