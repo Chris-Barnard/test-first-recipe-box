@@ -3,21 +3,21 @@ import reducer from '../../src/reducers/index';
 
 describe('root reducer', () => {
 
-  // INITIALIZE
-  // ********************************
+	// INITIALIZE
+	// ********************************
 
-  it('should provide an initial state', () => {
+	it('should provide an initial state', () => {
 
-    const initialState = undefined
+		const initialState = undefined
 
-    const action = {
-      type : '@@INIT'
-    }
+		const action = {
+			type : '@@INIT'
+		}
 
-    const expectedState = false
+		expect(reducer(initialState, action))
+			.toExist()
+			.toIncludeKey('counter');
 
-    expect(!reducer(initialState, action)).toEqual(expectedState);
-
-  })
+	})
 
 });

@@ -33,7 +33,9 @@ describe('counter reducer', () => {
 
     const expectedState = 17
 
-    expect(reducer(initialState, action)).toEqual(expectedState);
+    expect(reducer(initialState, action))
+      .toExist()
+      .toEqual(expectedState);
   
   });
 
