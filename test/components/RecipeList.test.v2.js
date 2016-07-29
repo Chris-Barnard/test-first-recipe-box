@@ -66,11 +66,11 @@ describe('components', () => {
       
       expect(click.calls.length).toBe(0)
       
-      recipes.at(1).simulate('click')
+      recipes.at(1).simulate('click', { preventDefault : () => {}})
       expect(click.calls.length).toBe(1)
       expect(click.calls[0].arguments[0]).toBe(101)
 
-      recipes.at(0).simulate('click')
+      recipes.at(0).simulate('click', { preventDefault : () => {}})
       expect(click.calls.length).toBe(2)
       expect(click.calls[1].arguments[0]).toBe(100)
     })

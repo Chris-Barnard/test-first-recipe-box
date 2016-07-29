@@ -27,7 +27,7 @@ describe('reducers', () => {
     it('should handle action SELECT_RECIPE', () => {
 
       const initialState = {
-        mainImg : 'junk'
+        mainImage : 'junk'
       }
 
       const action = {
@@ -37,7 +37,7 @@ describe('reducers', () => {
       }
 
       const expectedState = {
-        mainImg : 'other.jpg'
+        mainImage : 'other.jpg'
       }
 
       expect(reducer(initialState, action))

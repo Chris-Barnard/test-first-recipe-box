@@ -11,6 +11,18 @@ import RecipeList from '../src/components/RecipeList'
 
 describe('Main App Body', () => {
 
+  let minProps = {
+    viewer : {},
+    recipes : [],
+    selectRecipe : () => {},
+  }
+
+  it('should render w/out exploding', () => {
+
+
+
+  })
+
   // Display Application Title
   // ********************************
 
@@ -18,7 +30,7 @@ describe('Main App Body', () => {
 
     // code to create render object to test
     let renderer = createRenderer()
-    renderer.render(<App />)
+    renderer.render(<App {...minProps} />)
     let actualOutput = renderer.getRenderOutput()
 
     let expectedResult = <h2>React and Redux - Test First Example</h2>
@@ -50,7 +62,7 @@ describe('Main App Body', () => {
 
     // code to create render object to test
     let renderer = createRenderer()
-    renderer.render(<App />)
+    renderer.render(<App {...minProps} viewer={{mainImage : {}}} />)
     let actualOutput = renderer.getRenderOutput()
 
     let expectedResult = <Single image={{}} />
@@ -64,7 +76,7 @@ describe('Main App Body', () => {
 
   it('should render the RecipeList component', () => {
 
-    const wrapper = shallow(<App recipes={{}} />)
+    const wrapper = shallow(<App {...minProps} />)
     expect(wrapper.find(RecipeList).length).toBe(1)
     
 
