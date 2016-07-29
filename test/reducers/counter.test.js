@@ -40,7 +40,7 @@ describe('reducers', () => {
     
     });
 
-    // INCREMENT_COUNTER
+    // SET_COUNTER
     // ********************************
 
     it('should handle action SET_COUNTER', () => {

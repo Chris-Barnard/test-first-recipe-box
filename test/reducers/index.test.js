@@ -8,7 +8,7 @@ describe('reducers', () => {
     // INITIALIZE
     // ********************************
 
-    it('should provide an initial state', () => {
+    it('should provide an initial state with correct keys', () => {
 
       const initialState = undefined
 
@@ -18,7 +18,9 @@ describe('reducers', () => {
 
       expect(reducer(initialState, action))
         .toExist()
-        .toIncludeKey('counter');
+        .toIncludeKey('counter')
+        .toIncludeKey('recipes')
+        .toIncludeKey('viewer')
 
     })
 

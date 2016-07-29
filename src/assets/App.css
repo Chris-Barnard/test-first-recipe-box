@@ -16,6 +16,33 @@
 
 .App-intro {
   font-size: large;
+  display: flex;
+}
+
+.single-image {
+  width: 100%;
+}
+
+.single-container {
+  flex: 1 70%;
+}
+
+.recipe-list {
+  flex: 1 30%;
+  background: grey;
+}
+
+.recipe-item:hover {
+  background : rgba(0,0,0,0.7);
+}
+
+.recipe-item-name {
+  position: absolute;
+  top: 40px;
+  left: 0;
+  width: 100%;
+  margin: 0;
+  color: white;
 }
 
 @keyframes spin {
