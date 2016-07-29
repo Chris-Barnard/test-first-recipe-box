@@ -1,16 +1,3 @@
-export function incrementCounter() {
-  return {
-    type : 'INCREMENT_COUNTER'
-  }
-}
-
-export function setCounter(value) {
-  return {
-    type : 'SET_COUNTER',
-    value
-  }
-}
-
 export function loadRecipes(data) {
   return {
     type : 'LOAD_RECIPES',

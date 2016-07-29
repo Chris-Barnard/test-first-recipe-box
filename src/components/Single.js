@@ -1,9 +1,5 @@
 import React, { Component } from 'react';
 
-
-// import image from '../assets/photo.jpg'
-
-
 export class Single extends Component {
   render() {
     const { image } = this.props

@@ -6,7 +6,6 @@ import './assets/App.css';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import * as actionCreators from '../src/actions/actionCreators'
-import Counter from '../src/components/Counter';
 import Single from '../src/components/Single'
 import RecipeList from '../src/components/RecipeList'
 
@@ -16,7 +15,6 @@ import getRecipes from './data/api'
 
 function mapStateToProps(state) {
   return {
-    counter : state.counter,
     recipes : state.recipes,
     viewer : state.viewer
   }
@@ -37,7 +35,7 @@ export class App extends Component {
   }
   
   render() {
-    const { viewer, counter, incrementCounter, setCounter, toggleHighlight, selectRecipe, recipes } = this.props
+    const { viewer, toggleHighlight, selectRecipe, recipes } = this.props
 
     return (
       <div className="App">
@@ -48,7 +46,6 @@ export class App extends Component {
         <div className="App-intro">
           <Single image={viewer.mainImage} />
           <RecipeList list={recipes} toggleHighlight={toggleHighlight} select={selectRecipe} />
-          {/*<Counter value={counter} increment={ incrementCounter } reset={ () => setCounter(0) } />*/}
         </div>
       </div>
     );

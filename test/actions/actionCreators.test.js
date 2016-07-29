@@ -3,7 +3,7 @@ import * as actions from '../../src/actions/actionCreators'
 
 describe('actions', () => {
  
-  // INCREMENT_COUNTER
+  /*// INCREMENT_COUNTER
   // ********************************
 
   it('should create INCREMENT_COUNTER action', () => {
@@ -28,7 +28,7 @@ describe('actions', () => {
 
   	expect(actions.setCounter(13)).toEqual(expectedAction)
 
-  })
+  })*/
 
   // LOAD_RECIPES
   // ********************************

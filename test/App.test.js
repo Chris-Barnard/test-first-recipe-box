@@ -5,7 +5,6 @@ import expect from 'expect'
 import { shallow } from 'enzyme'
 import expectJSX from 'expect-jsx'
 import connectedApp, { App } from '../src/App.js'
-import Counter from '../src/components/Counter'
 import Single from '../src/components/Single'
 import RecipeList from '../src/components/RecipeList'
 
@@ -19,7 +18,8 @@ describe('Main App Body', () => {
 
   it('should render w/out exploding', () => {
 
-
+    let wrapper = shallow(<App {...minProps} />)
+    expect(wrapper.find('.App').length).toBe(1)
 
   })
 
@@ -38,22 +38,6 @@ describe('Main App Body', () => {
     expect(actualOutput).toIncludeJSX(expectedResult)
 
   })
-
-  // Render Counter Component
-  // ********************************
-
-  /*it('should render the Counter component', () => {
-
-    // code to create render object to test
-    let renderer = createRenderer()
-    renderer.render(<App counter={99} />)
-    let actualOutput = renderer.getRenderOutput()
-
-    let expectedResult = <Counter value={99} increment={undefined} reset={()=>{}} />
-
-    expect(actualOutput).toIncludeJSX(expectedResult)
-
-  })*/
 
   // Render Single Component
   // ********************************

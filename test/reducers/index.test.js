@@ -18,7 +18,7 @@ describe('reducers', () => {
 
       expect(reducer(initialState, action))
         .toExist()
-        .toIncludeKey('counter')
+        // .toIncludeKey('counter')
         .toIncludeKey('recipes')
         .toIncludeKey('viewer')
 

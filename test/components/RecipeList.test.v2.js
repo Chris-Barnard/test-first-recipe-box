@@ -3,7 +3,6 @@ import expect from 'expect'
 import { shallow } from 'enzyme'
 
 import RecipeList from '../../src/components/RecipeList'
-import Counter from '../../src/components/Counter'
 
 describe('components', () => {
 
