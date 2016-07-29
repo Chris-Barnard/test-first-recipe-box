@@ -61,7 +61,10 @@ export class RecipeList extends Component {
             recipe.isHighlighted && styles.item.highlighted,
             recipe.isSelected && styles.item.selected
           )} key={i} 
-            onClick={() => select(recipe.id, recipe.mainImage)}
+            onClick={(e) => {
+              e.preventDefault()
+              return select(recipe.id, recipe.mainImage)
+            }}
             onMouseOver={() => toggleHighlight(recipe.id)}
             onMouseOut={() => toggleHighlight(recipe.id)}
           >

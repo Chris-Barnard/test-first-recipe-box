@@ -1,5 +1,5 @@
-import photo from '../assets/photo.jpg'
-import photoFlip from '../assets/photo-flip.jpg'
+import photo from '../assets/photo-chicken.jpg'
+import photoFlip from '../assets/photo-burger.jpg'
 
 // fake api file to return the recipes database
 export default function getRecipes() {
