@@ -62,16 +62,6 @@ describe('Main App Body', () => {
 
     const wrapper = shallow(<App {...minProps} />)
     expect(wrapper.find(RecipeList).length).toBe(1)
-    
-
-    /*// code to create render object to test
-    let renderer = createRenderer()
-    renderer.render(<App recipes={{}} />)
-    let actualOutput = renderer.getRenderOutput()
-
-    let expectedResult = <RecipeList list={{}} />
-
-    expect(actualOutput).toIncludeJSX(expectedResult)*/
 
   })  
 
