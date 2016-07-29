@@ -34,8 +34,8 @@ describe('components', () => {
 
       let recipes = wrapper.find('.recipeItem')
       expect(recipes.length).toBe(list.length)
-      expect(recipes.at(1).props().style.background).toEqual('rgba(0, 0, 0, 0.5)')
-      expect(recipes.at(0).props().style.background).toEqual('rgba(0, 0, 0, 0.7)')
+      expect(recipes.at(1).props().style.opacity).toNotExist()
+      expect(recipes.at(0).props().style.opacity).toEqual('0.75')
     })
 
     // Adjust the style of selected items
@@ -48,8 +48,8 @@ describe('components', () => {
 
       let recipes = wrapper.find('.recipeItem')
       expect(recipes.length).toBe(list.length)
-      expect(recipes.at(1).props().style.background).toEqual('rgba(0, 0, 0, 0.5)')
-      expect(recipes.at(0).props().style.background).toEqual('rgba(0, 0, 0, 0.9)')
+      expect(recipes.at(1).props().style.opacity).toNotExist()
+      expect(recipes.at(0).props().style.opacity).toEqual('0.5')
     })
 
     // Call the function provided for onClick

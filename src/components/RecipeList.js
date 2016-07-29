@@ -18,37 +18,52 @@ export class RecipeList extends Component {
 
     const styles = {
       container : {
-        flex : '1 30%',
+        flex : '1 20%',
         listStyleType : 'none',
+        background : '#222',
         margin : 0,
-        padding : 0,
+        padding : 6,
+        // display : 'block',
+        // boxSizing : 'border-box',
+        position : 'relative',
       }, 
       item : {
         width : '100%',
         position : 'relative',
-        background : 'rgba(0, 0, 0, 0.5)',
-        highlighted : {
-          color : 'rgba(255, 255, 255, 0.2)',
-          background : 'rgba(0, 0, 0, 0.7)'
+        backgroundColor : 'rgba(255, 255, 255, 1)',
+        marginTop : 6,
+        marginBottom : 6,
+        borderRadius : 6,
+        boxShadow : '3 3 3 rgba(0, 0, 0, 0.2)',
+        highlighted : {  
+          opacity : '0.75',
         },
         selected : {
-          background : 'rgba(0, 0, 0, 0.9)',
-          boxShadow : '10 10 5 rgba(0, 0, 0, 0.5)'
+          opacity : '0.5',
+          // boxShadow : '10 10 5 rgba(0, 0, 0, 0.5)'
         },
       },
       link : {
         // display : 'block',
-        width : 240
+        // height : 200
+      },
+      image : {
+        verticalAlign : 'middle',
+        margin : 0,
+        padding : 0,
+        width : '100%',
+        height : '100%',
+        objectFit : 'cover',
       },
       label : {
         position : 'absolute',
-        top : 40,
+        top : 60,
         left : 0,
         width : '100%',
         margin : 0,
         color : 'rgba(255, 255, 255, 0.8)',
         highlighted : {
-          color : 'rgba(255, 255, 255, 0.4)'
+          // color : 'rgba(255, 255, 255, 0.6)'
         }
       },
     }
@@ -69,9 +84,7 @@ export class RecipeList extends Component {
             onMouseOut={() => toggleHighlight(recipe.id)}
           >
             <a href="#" style={styles.link} >
-              <img src={recipe.mainImage ? recipe.mainImage : null}
-                width={200}
-              />
+              <img style={styles.image} src={recipe.mainImage ? recipe.mainImage : null} />
               <h2 style={m(
                 styles.label,
                 recipe.isHighlighted && styles.label.highlighted
