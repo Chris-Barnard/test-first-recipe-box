@@ -12,10 +12,11 @@ export function toggleHighlight(id) {
   }
 }
 
-export function selectRecipe(id, img) {
+export function selectRecipe(id, img, caption) {
   return {
     type : 'SELECT_RECIPE',
     id,
-    img
+    img,
+    caption
   }
 }

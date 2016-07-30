@@ -27,17 +27,20 @@ describe('reducers', () => {
     it('should handle action SELECT_RECIPE', () => {
 
       const initialState = {
-        mainImage : 'junk'
+        mainImage : 'junk',
+        mainCaption : "the oldies aren't always goodies"
       }
 
       const action = {
         type : 'SELECT_RECIPE',
         id : 100,
-        img : 'other.jpg'
+        img : 'other.jpg',
+        caption : 'sometimes a new day dawns'
       }
 
       const expectedState = {
-        mainImage : 'other.jpg'
+        mainImage : 'other.jpg',
+        mainCaption : 'sometimes a new day dawns'
       }
 
       expect(reducer(initialState, action))

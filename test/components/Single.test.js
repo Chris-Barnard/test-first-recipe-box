@@ -31,27 +31,23 @@ describe('components', () => {
 
     it('should display an image from props', () => {
 
-      // code to stub image
-      let image = {}
+      const image = { xyz : '123' }
+      const wrapper = shallow(<Single image={image} />)
 
-      // code to create render object to test
-      let renderer = createRenderer()
-      renderer.render(<Single image={image} />)
-      let actualOutput = renderer.getRenderOutput()
-
-      let expectedOutput = <img src={image} className="single-image" />
-
-      expect(actualOutput).toIncludeJSX(expectedOutput)
+      expect(wrapper.find('img').length).toBe(1)
 
     })
 
     // Render a panel to hold current step instructions
     // ********************************
 
-    it('should render a panel with a p element', () => {
+    it('should render the caption panel', () => {
 
-      const wrapper = shallow(<Single />)
-      expect(wrapper.find('p').length).toBe(1)
+      const caption = 'Here we go.  Everyone is sure to love these!'
+
+      const wrapper = shallow(<Single caption={caption} />)
+      expect(wrapper.find('.singleCaption').length).toBe(1)
+      expect(wrapper.find('p').text()).toBe(caption)
 
     })
 

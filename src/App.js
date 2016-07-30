@@ -2,12 +2,12 @@ import React, { Component } from 'react';
 import logo from './assets/logo.svg';
 import './assets/App.css';
 
-
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import * as actionCreators from '../src/actions/actionCreators'
 import Single from '../src/components/Single'
 import RecipeList from '../src/components/RecipeList'
+import StepList from '../src/components/StepList'
 
 // for now loading this statically
 import image from './assets/photo.jpg'
@@ -15,7 +15,8 @@ import getRecipes from './data/api'
 
 function mapStateToProps(state) {
   return {
-    recipes : state.recipes,
+    recipeList : state.recipes.recipeList,
+    activeRecipe : state.recipes.activeRecipe,
     viewer : state.viewer
   }
 }
@@ -30,12 +31,12 @@ export class App extends Component {
     const { loadRecipes, selectRecipe } = this.props
     
     loadRecipes(getRecipes())
-    selectRecipe(100, image)
+    selectRecipe(100, image, 'Gotta start somewhere.  It might as well be beautiful!!')
 
   }
   
   render() {
-    const { viewer, toggleHighlight, selectRecipe, recipes } = this.props
+    const { viewer, toggleHighlight, selectRecipe, recipeList, activeRecipe } = this.props
 
     return (
       <div className="App">
@@ -44,8 +45,9 @@ export class App extends Component {
           <h2>React and Redux - Test First Example</h2>
         </div>
         <div className="App-intro">
-          <Single image={viewer.mainImage} />
-          <RecipeList list={recipes} toggleHighlight={toggleHighlight} select={selectRecipe} />
+          <Single image={viewer.mainImage} caption={viewer.mainCaption} />
+          <StepList list={activeRecipe.steps} />
+          <RecipeList list={recipeList} toggleHighlight={toggleHighlight} select={selectRecipe} />
         </div>
       </div>
     );

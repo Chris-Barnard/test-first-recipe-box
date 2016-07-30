@@ -15,7 +15,12 @@ describe('reducers', () => {
         type : '@@INIT'
       }
 
-      const expectedState = []
+      const expectedState = {
+        activeRecipe : {
+          steps : [],
+        },
+        recipeList : [],
+      }
 
       expect(reducer(initialState, action)).toEqual(expectedState);
 
@@ -26,15 +31,20 @@ describe('reducers', () => {
 
     it('should handle action LOAD_RECIPES', () => {
 
-      const initialState = []
+      let initialState = {
+        activeRecipe : {},
+        recipeList : [],
+      }
       const data = [{ name : 'Chicken Thighs', images : [] }]
 
-      const action = {
+      let action = {
         type : 'LOAD_RECIPES',
         data
       }
 
-      const expectedState = [{ name : 'Chicken Thighs', images : [] }]
+      let expectedState = { activeRecipe : {
+          steps : [],
+        }, recipeList : [{ name : 'Chicken Thighs', images : [] }] }
 
       expect(reducer(initialState, action))
         .toExist()
@@ -47,85 +57,36 @@ describe('reducers', () => {
 
     it('should handle action TOGGLE_HIGHLIGHT', () => {
 
-      let id = 100
-      let startingValue = false
-      const initialState = [{
-    name : 'Chicken Thighs',
-    id : 100,
-    isHighlighted : false,
-    isSelected : false,
-    steps : [{
-      order : 1,
-      caption : 'Use scissors to cut the excess fat off the chicken',
-      image : null
-    },{
-      order : 2,
-      caption : 'Marinate chicken thighs in salad dressing',
-      image : null
-    },{
-      order : 3,
-      caption : 'Grill chicken on the grill for about 4-7 minutes each side'
-    }]
-  },{
-    name : 'Hamburger Patty Salad',
-    id : 101,
-    isHighlighted : false,
-    isSelected : false,
-    steps : [{
-      order : 1,
-      caption : 'Mix meat, seasoning and raw egg into a ziplock baggy',
-      image : null
-    },{
-      order : 2,
-      caption : 'Form into patties, and begin to grill for 8-13 minutes turning several times throughout',
-      image : null
-    },{
-      order : 3,
-      caption : 'Chop up tomatos, and mix with spinach into a bowl',
-      image : null
-    }]
-  }]
+      const initialState = { activeRecipe : {}, recipeList : [{
+        name : 'Chicken Thighs',
+        id : 100,
+        isHighlighted : false,
+        isSelected : false,
+      },{
+        name : 'Hamburger Patty Salad',
+        id : 101,
+        isHighlighted : false,
+        isSelected : false,
+      }] }
+      
       const action = {
         type : 'TOGGLE_HIGHLIGHT',
-        id
+        id : 100
       }
 
-      const expectedState = [{
-    name : 'Chicken Thighs',
-    id : 100,
-    isHighlighted : true,
-    isSelected : false,
-    steps : [{
-      order : 1,
-      caption : 'Use scissors to cut the excess fat off the chicken',
-      image : null
-    },{
-      order : 2,
-      caption : 'Marinate chicken thighs in salad dressing',
-      image : null
-    },{
-      order : 3,
-      caption : 'Grill chicken on the grill for about 4-7 minutes each side'
-    }]
-  },{
-    name : 'Hamburger Patty Salad',
-    id : 101,
-    isHighlighted : false,
-    isSelected : false,
-    steps : [{
-      order : 1,
-      caption : 'Mix meat, seasoning and raw egg into a ziplock baggy',
-      image : null
-    },{
-      order : 2,
-      caption : 'Form into patties, and begin to grill for 8-13 minutes turning several times throughout',
-      image : null
-    },{
-      order : 3,
-      caption : 'Chop up tomatos, and mix with spinach into a bowl',
-      image : null
-    }]
-  }]
+      const expectedState = { activeRecipe : {
+          steps : [],
+        }, recipeList : [{
+        name : 'Chicken Thighs',
+        id : 100,
+        isHighlighted : true,
+        isSelected : false,
+      },{
+        name : 'Hamburger Patty Salad',
+        id : 101,
+        isHighlighted : false,
+        isSelected : false,
+      }] }
 
       expect(reducer(initialState, action))
         .toExist()
@@ -138,91 +99,124 @@ describe('reducers', () => {
 
     it('should handle action SELECT_RECIPE', () => {
 
-      let id = 100
-      let startingValue = false
-      const initialState = [{
-    name : 'Chicken Thighs',
-    id : 100,
-    isHighlighted : false,
-    isSelected : false,
-    steps : [{
-      order : 1,
-      caption : 'Use scissors to cut the excess fat off the chicken',
-      image : null
-    },{
-      order : 2,
-      caption : 'Marinate chicken thighs in salad dressing',
-      image : null
-    },{
-      order : 3,
-      caption : 'Grill chicken on the grill for about 4-7 minutes each side'
-    }]
-  },{
-    name : 'Hamburger Patty Salad',
-    id : 101,
-    isHighlighted : false,
-    isSelected : false,
-    steps : [{
-      order : 1,
-      caption : 'Mix meat, seasoning and raw egg into a ziplock baggy',
-      image : null
-    },{
-      order : 2,
-      caption : 'Form into patties, and begin to grill for 8-13 minutes turning several times throughout',
-      image : null
-    },{
-      order : 3,
-      caption : 'Chop up tomatos, and mix with spinach into a bowl',
-      image : null
-    }]
-  }]
-      const action = {
+      const initialState = { activeRecipe : { something : 'that should', get : 'replaced' }, recipeList : [{
+        name : 'Chicken Thighs',
+        id : 100,
+        isHighlighted : false,
+        isSelected : false,
+      },{
+        name : 'Hamburger Patty Salad',
+        id : 101,
+        isHighlighted : false,
+        isSelected : false,
+      }] }
+
+      let action = {
         type : 'SELECT_RECIPE',
-        id
+        id : 100,
       }
 
-      const expectedState = [{
-    name : 'Chicken Thighs',
-    id : 100,
-    isHighlighted : false,
-    isSelected : true,
-    steps : [{
-      order : 1,
-      caption : 'Use scissors to cut the excess fat off the chicken',
-      image : null
-    },{
-      order : 2,
-      caption : 'Marinate chicken thighs in salad dressing',
-      image : null
-    },{
-      order : 3,
-      caption : 'Grill chicken on the grill for about 4-7 minutes each side'
-    }]
-  },{
-    name : 'Hamburger Patty Salad',
-    id : 101,
-    isHighlighted : false,
-    isSelected : false,
-    steps : [{
-      order : 1,
-      caption : 'Mix meat, seasoning and raw egg into a ziplock baggy',
-      image : null
-    },{
-      order : 2,
-      caption : 'Form into patties, and begin to grill for 8-13 minutes turning several times throughout',
-      image : null
-    },{
-      order : 3,
-      caption : 'Chop up tomatos, and mix with spinach into a bowl',
-      image : null
-    }]
-  }]
+      let expectedState = { activeRecipe : {
+        name : 'Chicken Thighs',
+        id : 100,
+        isHighlighted : false,
+        isSelected : true,
+        steps : [],
+      }, recipeList : [{
+        name : 'Chicken Thighs',
+        id : 100,
+        isHighlighted : false,
+        isSelected : true,
+      },{
+        name : 'Hamburger Patty Salad',
+        id : 101,
+        isHighlighted : false,
+        isSelected : false,
+      }] }
+
+      expect(reducer(initialState, action))
+        .toExist()
+        .toEqual(expectedState);
+
+      action = {
+        type : 'SELECT_RECIPE',
+        id : 101,
+      }
+
+      expectedState = { activeRecipe : {
+        name : 'Hamburger Patty Salad',
+        id : 101,
+        isHighlighted : false,
+        isSelected : true,
+        steps : []
+      }, recipeList : [{
+        name : 'Chicken Thighs',
+        id : 100,
+        isHighlighted : false,
+        isSelected : false,
+      },{
+        name : 'Hamburger Patty Salad',
+        id : 101,
+        isHighlighted : false,
+        isSelected : true,
+      }] }
 
       expect(reducer(initialState, action))
         .toExist()
         .toEqual(expectedState);
     
     });
+
+    it("it shouldn't lose the activeRecipe.steps when another action fires", () => {
+
+      const initialState = {
+        activeRecipe : {
+          steps : [
+            'test 1',
+            'test 2'
+          ]
+        },
+        recipeList : [{
+          name : 'Chicken Thighs',
+          id : 100,
+          isHighlighted : false,
+          isSelected : false,
+        },{
+          name : 'Hamburger Patty Salad',
+          id : 101,
+          isHighlighted : false,
+          isSelected : true,
+        }]
+      }
+
+      const action = {
+        type : 'TOGGLE_HIGHLIGHT',
+        id : 100
+      }
+
+      const expectedState = {
+        activeRecipe : {
+          steps : [
+            'test 1',
+            'test 2'
+          ]
+        },
+        recipeList : [{
+          name : 'Chicken Thighs',
+          id : 100,
+          isHighlighted : true,
+          isSelected : false,
+        },{
+          name : 'Hamburger Patty Salad',
+          id : 101,
+          isHighlighted : false,
+          isSelected : true,
+        }]
+      }
+
+      expect(reducer(initialState, action)).toEqual(expectedState)
+
+    })
 
   });
 

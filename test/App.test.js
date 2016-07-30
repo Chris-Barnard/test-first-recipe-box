@@ -7,6 +7,7 @@ import expectJSX from 'expect-jsx'
 import connectedApp, { App } from '../src/App.js'
 import Single from '../src/components/Single'
 import RecipeList from '../src/components/RecipeList'
+import StepList from '../src/components/StepList'
 
 describe('Main App Body', () => {
 
@@ -14,6 +15,9 @@ describe('Main App Body', () => {
     viewer : {},
     recipes : [],
     selectRecipe : () => {},
+    activeRecipe : {
+      steps : [],
+    }
   }
 
   it('should render w/out exploding', () => {
@@ -44,14 +48,8 @@ describe('Main App Body', () => {
 
   it('should render the Single component', () => {
 
-    // code to create render object to test
-    let renderer = createRenderer()
-    renderer.render(<App {...minProps} viewer={{mainImage : {}}} />)
-    let actualOutput = renderer.getRenderOutput()
-
-    let expectedResult = <Single image={{}} />
-
-    expect(actualOutput).toIncludeJSX(expectedResult)
+    const wrapper = shallow(<App {...minProps} />)
+    expect(wrapper.find(Single).length).toBe(1)
 
   })
 
@@ -65,6 +63,14 @@ describe('Main App Body', () => {
 
   })  
 
-  // 
+  // Render the StepList component
+  // *********************************
+
+  it('should render the StepList component', () => {
+
+    const wrapper = shallow(<App {...minProps} />)
+    expect(wrapper.find(StepList).length).toBe(1)
+
+  })
 
 })

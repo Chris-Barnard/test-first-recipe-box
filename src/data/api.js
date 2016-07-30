@@ -7,6 +7,7 @@ export default function getRecipes() {
 		name : 'Chicken Thighs',
 		id : 100,
 		mainImage : photo,
+		mainCaption : 'Oh boy! These will be amazing!',
 		isHighlighted : false,
 		isSelected : false,
 		steps : [{
@@ -25,6 +26,7 @@ export default function getRecipes() {
 		name : 'Hamburger Patty Salad',
 		id : 101,
 		mainImage : photoFlip,
+		mainCaption : 'Yummy in my tummy! These look great!',
 		isHighlighted : false,
 		isSelected : false,
 		steps : [{

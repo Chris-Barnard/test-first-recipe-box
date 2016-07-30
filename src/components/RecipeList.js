@@ -23,8 +23,6 @@ export class RecipeList extends Component {
         background : '#222',
         margin : 0,
         padding : 6,
-        // display : 'block',
-        // boxSizing : 'border-box',
         position : 'relative',
       }, 
       item : {
@@ -78,7 +76,7 @@ export class RecipeList extends Component {
           )} key={i} 
             onClick={(e) => {
               e.preventDefault()
-              return select(recipe.id, recipe.mainImage)
+              return select(recipe.id, recipe.mainImage, recipe.mainCaption)
             }}
             onMouseOver={() => toggleHighlight(recipe.id)}
             onMouseOut={() => toggleHighlight(recipe.id)}

@@ -3,33 +3,6 @@ import * as actions from '../../src/actions/actionCreators'
 
 describe('actions', () => {
  
-  /*// INCREMENT_COUNTER
-  // ********************************
-
-  it('should create INCREMENT_COUNTER action', () => {
-
-    const expectedAction = {
-      type : 'INCREMENT_COUNTER'
-    }
-
-    expect(actions.incrementCounter()).toEqual(expectedAction)
-
-  })
-
-  // RESET_COUNTER
-  // ********************************
-
-  it('should create the SET_COUNTER action', () => {
-
-  	const expectedAction = {
-  		type : 'SET_COUNTER', 
-  		value : 13
-  	}
-
-  	expect(actions.setCounter(13)).toEqual(expectedAction)
-
-  })*/
-
   // LOAD_RECIPES
   // ********************************
 
@@ -70,14 +43,20 @@ describe('actions', () => {
 
     const id = 25
     const img = 'something.jpg'
+    const caption = 'caption'
 
     const expectedAction = {
       type : 'SELECT_RECIPE',
       id,
       img,
+      caption
     }
 
-    expect(actions.selectRecipe(id, img)).toEqual(expectedAction)
+    expect(actions.selectRecipe(
+      id,
+      img,
+      caption
+    )).toEqual(expectedAction)
 
   })
 
