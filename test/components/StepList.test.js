@@ -1,5 +1,6 @@
 import React from 'react'
 import { createRenderer } from 'react-addons-test-utils'
+import FlipMove from 'react-flip-move'
 
 import expect from 'expect'
 import { shallow } from 'enzyme'
@@ -30,7 +31,7 @@ describe('components', () => {
     it('should render a ul component', () => {
 
       const wrapper = shallow(<StepList {...minProps} />)
-      expect(wrapper.find('ul').length).toBe(1)
+      expect(wrapper.find(FlipMove).length).toBe(1)
 
     })
 

@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import FlipMove from 'react-flip-move'
 
 function m() {
   let res = {}
@@ -52,12 +53,21 @@ export class StepList extends Component {
     }
 
     return (
-      <ul style={styles.container} className="stepList" >
+      <FlipMove
+        easing="ease-in-out"
+        enterAnimation="accordianVertical"
+        leaveAnimation="accordianVertical"
+        duration={500}
+        staggerDurationBy={30}
+        style={styles.container}
+        typeName="ul"
+        className="stepList"
+      >
         {list.map((item, i) => {
           return (
             <li className="stepCard"
               style={styles.card}
-              key={i}
+              key={item.id}
               onMouseOver={() => toggleCompleteButton(item.id, true)}
               onMouseOut={() => toggleCompleteButton(item.id, false)}
             >
@@ -65,7 +75,6 @@ export class StepList extends Component {
               <button className="stepCardCloseButton"
                 style={m(
                 styles.closeButton,
-                // need to get the active step identified
                 item.showCloseButton && styles.closeButton.active
               )} onClick={(e) => {
                 e.preventDefault()
@@ -74,7 +83,7 @@ export class StepList extends Component {
             </li>
           )
         })}
-      </ul>
+      </FlipMove>
     );
   }
 }
