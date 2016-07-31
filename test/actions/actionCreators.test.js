@@ -60,6 +60,40 @@ describe('actions', () => {
 
   })
 
+  // TOGGLE_STEP_CLOSE_BUTTON
+  // ********************************
+
+  it('should create the TOGGLE_STEP_CLOSE_BUTTON action', () => {
+
+    const stepNum = 2
+    const value = true
+    const expectedAction = {
+      type : 'TOGGLE_STEP_CLOSE_BUTTON',
+      stepNum,
+      value,
+    }
+
+    expect(actions.toggleStepCloseButton(stepNum, value))
+      .toExist()
+      .toEqual(expectedAction)
+  })
+
+  // COMPLETE_STEP
+  // ********************************
+
+  it('should create the COMPLETE_STEP action', () => {
+
+    const stepNum = 2
+    const expectedAction = {
+      type : 'COMPLETE_STEP',
+      stepNum,
+    }
+
+    expect(actions.completeStep(stepNum))
+      .toExist()
+      .toEqual(expectedAction)
+  })
+
   // NEXT_ACTION
   // ********************************
 

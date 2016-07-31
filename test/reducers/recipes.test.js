@@ -218,6 +218,112 @@ describe('reducers', () => {
 
     })
 
+    // Handle action TOGGLE_STEP_CLOSE_BUTTON
+    // *********************************
+
+    it('should handle action TOGGLE_STEP_CLOSE_BUTTON', () => {
+
+      let initialState = {
+        activeRecipe : {
+          steps : [{ caption : 'test 1', id : 1 },{ caption : 'test 2', id : 2 }]
+        }
+      }
+
+      let action = {
+        type : 'TOGGLE_STEP_CLOSE_BUTTON',
+        stepNum : 1,
+        value : true
+      }
+
+      let expectedState = {
+        activeRecipe : {
+          steps : [{ caption : 'test 1', id : 1, showCloseButton : true },{ caption : 'test 2', id : 2, showCloseButton : false }]
+        },
+        recipeList : []
+      }
+
+      expect(reducer(initialState, action)).toEqual(expectedState)
+
+      initialState = expectedState
+
+      action = {
+        type : 'TOGGLE_STEP_CLOSE_BUTTON',
+        stepNum : 1,
+        value : false,
+      }
+      
+      expectedState = {
+        activeRecipe : {
+          steps : [{ caption : 'test 1', id : 1, showCloseButton : false },{ caption : 'test 2', id : 2, showCloseButton : false }]
+        },
+        recipeList : []
+      }
+
+      expect(reducer(initialState, action)).toEqual(expectedState)
+    })
+
+    // Handle action COMPLETE_STEP
+    // *********************************
+
+    it('should handle action COMPLETE_STEP', () => {
+
+      let initialState = {
+        activeRecipe : {
+          steps : [{ caption : 'test 1', id : 1 },{ caption : 'test 2', id : 2 }]
+        }
+      }
+
+      let action = {
+        type : 'COMPLETE_STEP',
+        stepNum : 1,
+      }
+
+      let expectedState = {
+        activeRecipe : {
+          steps : [{ caption : 'test 2', id : 2 }]
+        },
+        recipeList : []
+      }
+
+      expect(reducer(initialState, action)).toEqual(expectedState)
+
+      initialState = expectedState
+      
+      action = {
+        type : 'COMPLETE_STEP',
+        stepNum : 2,
+      }
+
+      expectedState = {
+        activeRecipe : {
+          steps : []
+        },
+        recipeList : []
+      }
+
+      expect(reducer(initialState, action)).toEqual(expectedState)
+
+      initialState = {
+        activeRecipe : {
+          steps : [{ caption : 'test 1', id : 1 },{ caption : 'test 2', id : 2 }]
+        }
+      }
+
+      action = {
+        type : 'COMPLETE_STEP',
+        stepNum : 2,
+      }
+
+      expectedState = {
+        activeRecipe : {
+          steps : [{ caption : 'test 1', id : 1 }]
+        },
+        recipeList : [],
+      }
+
+      expect(reducer(initialState, action)).toEqual(expectedState)
+    })
+
   });
 
 })

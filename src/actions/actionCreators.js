@@ -20,3 +20,18 @@ export function selectRecipe(id, img, caption) {
     caption
   }
 }
+
+export function toggleStepCloseButton(stepNum, value) {
+  return {
+    type : 'TOGGLE_STEP_CLOSE_BUTTON',
+    stepNum,
+    value,
+  }
+}
+
+export function completeStep(stepNum) {
+  return {
+    type : 'COMPLETE_STEP',
+    stepNum,
+  }
+}

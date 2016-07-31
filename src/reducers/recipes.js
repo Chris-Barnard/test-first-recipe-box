@@ -22,6 +22,17 @@ const recipeListReducer = (state = [], action) => {
   }
 }
 
+function stepReducer(state = {}, action) {
+  switch(action.type) {
+    case 'TOGGLE_STEP_CLOSE_BUTTON' :
+      return { ...state,
+        showCloseButton : state.id === action.stepNum ? action.value : false
+      }
+    default :
+      return state
+  }
+}
+
 
 // receives the global state for the recipes key in state
 // it needs access to the recipeList which it shares this key with
@@ -34,6 +45,19 @@ function activeRecipeReducer(state, action) {
         isSelected : true,
         steps : item.steps === undefined ? [] : item.steps
       }
+    case 'TOGGLE_STEP_CLOSE_BUTTON' :
+      return { ...state.activeRecipe,
+        steps : state.activeRecipe.steps.map((step) => stepReducer(step, action))
+      }
+    case 'COMPLETE_STEP' :
+      const index = state.activeRecipe.steps.findIndex((step) => step.id === action.stepNum)
+
+      return { ...state.activeRecipe,
+        steps : [ 
+          ...state.activeRecipe.steps.slice(0, index),
+          ...state.activeRecipe.steps.slice(index + 1)
+        ]
+      }
     default : 
       return { ...state.activeRecipe,
         steps : state.activeRecipe.steps === undefined ? [] : state.activeRecipe.steps
@@ -42,17 +66,13 @@ function activeRecipeReducer(state, action) {
 }
 
 function reducer(state = {
-  recipeList : [],
-  activeRecipe : {}
-}, action) {
-  switch(action.type) {
-
-    default :
-      return {
-        recipeList : recipeListReducer(state.recipeList, action),
-        activeRecipe : activeRecipeReducer(state, action)
-      }
-  }
+    recipeList : [],
+    activeRecipe : {}
+  }, action) {
+    return {
+      recipeList : recipeListReducer(state.recipeList, action),
+      activeRecipe : activeRecipeReducer(state, action)
+    }
 }
 
 export default reducer

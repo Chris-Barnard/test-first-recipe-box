@@ -13,11 +13,11 @@ function m() {
 export class StepList extends Component {
 
   render() {
-    const { list, complete, toggleExitButton } = this.props
+    const { list, complete, toggleCompleteButton } = this.props
 
     const styles = {
       container : {
-        flex : '1 20%',
+        flex : '1 30%',
         listStyleType : 'none',
         background : '#AAA',
         margin : 0,
@@ -58,15 +58,15 @@ export class StepList extends Component {
             <li className="stepCard"
               style={styles.card}
               key={i}
-              onMouseOver={() => toggleExitButton(item.id)}
-              onMouseOut={() => toggleExitButton(item.id)}
+              onMouseOver={() => toggleCompleteButton(item.id, true)}
+              onMouseOut={() => toggleCompleteButton(item.id, false)}
             >
               {item.caption}
               <button className="stepCardCloseButton"
                 style={m(
                 styles.closeButton,
                 // need to get the active step identified
-                item.active && styles.closeButton.active
+                item.showCloseButton && styles.closeButton.active
               )} onClick={(e) => {
                 e.preventDefault()
                 return complete(item.id)

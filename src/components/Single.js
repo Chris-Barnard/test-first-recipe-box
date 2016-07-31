@@ -9,7 +9,7 @@ export class Single extends Component {
         padding : 20,
         paddingRight : 10,
         backgroundColor : '#AAA',
-        flex : '1 60%',
+        flex : '1 50%',
         border : 0,
       },
       caption : {

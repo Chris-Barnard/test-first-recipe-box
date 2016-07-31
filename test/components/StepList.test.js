@@ -75,7 +75,7 @@ describe('components', () => {
 
       const list = [{ caption : 'Test Entry', id : 1 },{ caption : 'Test 2', id : 2 },{ caption : 'Test 3', id : 3 }]
       const click = expect.createSpy()
-      const wrapper = shallow(<StepList {...minProps} list={list} toggleExitButton={click} />)
+      const wrapper = shallow(<StepList {...minProps} list={list} toggleCompleteButton={click} />)
       let cards = wrapper.find('.stepCard')
 
       expect(click.calls.length).toBe(0)
@@ -87,6 +87,16 @@ describe('components', () => {
       cards.at(2).simulate('mouseOut')
       expect(click.calls.length).toBe(2)
       expect(click.calls[1].arguments[0]).toBe(3)
+
+    })
+
+    it('should display the button when showCloseButton is true', () => {
+
+      const list = [{ caption : 'Test Entry', id : 1 },{ caption : 'Test 2', id : 2, showCloseButton : true },{ caption : 'Test 3', id : 3 }]
+      const wrapper = shallow(<StepList {...minProps} list={list} />)
+
+      let stepCards = wrapper.find('.stepCardCloseButton')
+      expect(stepCards.at(1).props().style.visibility).toBe('visible')
 
     })
 

@@ -36,7 +36,8 @@ export class App extends Component {
   }
   
   render() {
-    const { viewer, toggleHighlight, selectRecipe, recipeList, activeRecipe } = this.props
+    const { viewer, toggleHighlight, selectRecipe, recipeList,
+        activeRecipe, toggleStepCloseButton, completeStep } = this.props
 
     return (
       <div className="App">
@@ -46,7 +47,7 @@ export class App extends Component {
         </div>
         <div className="App-intro">
           <Single image={viewer.mainImage} caption={viewer.mainCaption} />
-          <StepList list={activeRecipe.steps} />
+          <StepList list={activeRecipe.steps} complete={completeStep} toggleCompleteButton={toggleStepCloseButton} />
           <RecipeList list={recipeList} toggleHighlight={toggleHighlight} select={selectRecipe} />
         </div>
       </div>
