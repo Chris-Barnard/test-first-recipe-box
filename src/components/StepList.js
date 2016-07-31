@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import FlipMove from 'react-flip-move'
+import image from '../assets/photo.jpg'
 
 function m() {
   let res = {}
@@ -29,14 +30,32 @@ export class StepList extends Component {
       card : {
         backgroundColor : 'white',
         padding : 6,
+        paddingRight : 44,
         margin : 10,
         borderRadius : 6,
         position : 'relative',
+        display : 'flex',
+      },
+      image : {
+        margin : 6,
+        width : '100%',
+        header : {
+          flex : '1 40%',
+        },
+        footer : {
+          margin : 3,
+        }
+      },
+      caption : {
+        header : {
+          paddingLeft : 10,
+          flex : '1 60%',
+        }
       },
       closeButton : {
         position : 'absolute',
-        right : 10,
-        top : 0,
+        right : 6,
+        top : 6,
         margin : 'auto',
         width : 32,
         height : 32,
@@ -59,6 +78,7 @@ export class StepList extends Component {
         leaveAnimation="accordianVertical"
         duration={500}
         staggerDurationBy={30}
+        staggerDelayBy={18}
         style={styles.container}
         typeName="ul"
         className="stepList"
@@ -71,7 +91,13 @@ export class StepList extends Component {
               onMouseOver={() => toggleCompleteButton(item.id, true)}
               onMouseOut={() => toggleCompleteButton(item.id, false)}
             >
-              {item.caption}
+              <div style={styles.image.header}>
+                <img src={image} style={styles.image} />
+                <h5 style={styles.image.footer} >3 minutes</h5>
+              </div>
+              <div style={styles.caption.header} >
+                {item.caption}
+              </div>
               <button className="stepCardCloseButton"
                 style={m(
                 styles.closeButton,
