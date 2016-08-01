@@ -70,6 +70,11 @@ You don’t have to ever use `eject`. The curated feature set is suitable for sm
 
 ## How To...
 
+### Build to gh-pages
+
+This is kind of complicated... We will first create a clone with an orphaned branch named gh-pages `git clone https://github.com/Chris-Barnard/test-first-recipe-box.git` `git checkout --orphan gh-pages`, then install all our dependencies `npm install`.  Next we will eject the create-react-app script in this clone `npm run eject` so we can edit the webpack config to change our public dir from '/' to '/<project name>' `./config/webpack.prod.js.  Finally we can run our build script `npm run build`.
+by cb
+
 ### Import a Component
 
 This project setup supports ES6 modules thanks to Babel.  
