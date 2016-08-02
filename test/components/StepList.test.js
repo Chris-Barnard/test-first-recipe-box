@@ -101,6 +101,36 @@ describe('components', () => {
 
     })
 
+    it('should accept time estimate from the list of steps object', () => {
+
+      const list = [{
+        id : 1,
+        caption : 'woohoo',
+        timeEstimate : 24,
+      }]
+      const wrapper = shallow(<StepList {...minProps} list={list} />)
+      expect(wrapper.find('.stepList').length).toBe(1)
+      expect(wrapper.find('.timeEstimate').length).toBe(1)
+      expect(wrapper.find('.timeEstimate').props().children[0]).toBe(24)
+
+    })
+
+    it('should accept an image in the stepdata to provide instead of the default', () => {
+
+      const list = [{
+        id : 1,
+        caption : 'wooohoo',
+        image : './burger.jpg',
+      }]
+
+      const wrapper = shallow(<StepList {...minProps} list={list} />)
+
+      const image = wrapper.find('img')
+      expect(wrapper.find('.stepList').length).toBe(1)
+      expect(wrapper.find('img').props().src).toEqual('./burger.jpg')
+
+    })
+
   })
 
 })

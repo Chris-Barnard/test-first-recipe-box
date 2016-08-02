@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import FlipMove from 'react-flip-move'
-import image from '../assets/photo.jpg'
+import defaultImage from '../assets/photo.jpg'
 
 function m() {
   let res = {}
@@ -15,7 +15,6 @@ function m() {
 export class StepList extends Component {
 
   render() {
-    const { list, complete, toggleCompleteButton } = this.props
 
     const styles = {
       container : {
@@ -71,6 +70,8 @@ export class StepList extends Component {
       }
     }
 
+    const { list, complete, toggleCompleteButton } = this.props
+
     return (
       <FlipMove
         easing="ease-in-out"
@@ -92,8 +93,8 @@ export class StepList extends Component {
               onMouseOut={() => toggleCompleteButton(item.id, false)}
             >
               <div style={styles.image.header}>
-                <img src={image} style={styles.image} />
-                <h5 style={styles.image.footer} >3 minutes</h5>
+                <img src={item.image ? item.image : defaultImage} style={styles.image} />
+                <h5 className="timeEstimate" style={styles.image.footer} >{item.timeEstimate} minutes</h5>
               </div>
               <div style={styles.caption.header} >
                 {item.caption}
