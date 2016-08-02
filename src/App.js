@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import FlipMove from 'react-flip-move'
 import logo from './assets/logo.svg';
 import './assets/App.css';
 
@@ -37,19 +38,50 @@ export class App extends Component {
   }
   
   render() {
+    const styles = {
+      container : {
+        flex : '1 30%',
+        listStyleType : 'none',
+        background : '#AAA',
+        margin : 0,
+        paddingTop : 0,
+        paddingLeft : 0,
+        border : 0,
+      },
+    }
+
     const { viewer, toggleHighlight, selectRecipe, recipeList,
         activeRecipe, toggleStepCloseButton, completeStep, beginStep } = this.props
 
     return (
       <div className="App">
         <div className="App-header">
-          <img src={logo} className="App-logo" alt="logo" />
+          {/*<img src={logo} className="App-logo" alt="logo" />*/}
           <h2>React and Redux - Test First Example</h2>
         </div>
         <div className="App-intro">
-          <Single viewer={viewer} onClick={() => beginStep(activeRecipe.steps[0].image, activeRecipe.steps[0].caption)} />
-          {viewer.mode === 'steps' && <StepList list={activeRecipe.steps} complete={completeStep} toggleCompleteButton={toggleStepCloseButton} />}
-          {viewer.mode === 'title' && <RecipeTitle activeRecipe={activeRecipe} />}
+          <Single viewer={viewer} />
+          <FlipMove
+            easing="ease-in-out"
+            enterAnimation="elevator"
+            leaveAnimation="elevator"
+            duration={500}
+            staggerDurationBy={30}
+            staggerDelayBy={18}
+            style={styles.container}
+            typeName="ul"
+            className="stepList"
+          >
+            {viewer.mode === 'steps' && <StepList
+              recipe={activeRecipe}
+              complete={completeStep}
+              toggleCompleteButton={toggleStepCloseButton}
+            />}
+            {viewer.mode === 'title' && <RecipeTitle
+              activeRecipe={activeRecipe}
+              start={() => beginStep(activeRecipe.steps[0].image, activeRecipe.steps[0].caption)}
+            />}
+          </FlipMove>
           {/*<StepList list={activeRecipe.steps} complete={completeStep} toggleCompleteButton={toggleStepCloseButton} />*/}
           <RecipeList list={recipeList} toggleHighlight={toggleHighlight} select={selectRecipe} />
         </div>

@@ -18,6 +18,16 @@ function reducer(state = {}, action) {
         mainCaption : action.caption,
         mode : 'steps',
       }
+    case 'COMPLETE_STEP' :
+      // console.log(JSON.stringify(action.activeRecipe))
+      let activeRecipe = JSON.parse(JSON.stringify(action.activeRecipe))
+      let newSteps = activeRecipe.steps.filter(x => x.id !== action.stepNum)
+      newSteps.sort(x => -x.id)
+      // console.log(JSON.stringify(action.activeRecipe))
+      return { ...state,
+        mainCaption : newSteps[0] ? newSteps[0].caption : activeRecipe.mainCaption,
+        mainImage : newSteps[0] ? newSteps[0].image : activeRecipe.mainImage
+      }
     default :
       return state
   }

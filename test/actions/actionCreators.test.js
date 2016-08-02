@@ -84,12 +84,14 @@ describe('actions', () => {
   it('should create the COMPLETE_STEP action', () => {
 
     const stepNum = 2
+    const activeRecipe = { steps : [{id:1,name:'test'},{id:2,name:'test2'}] }
     const expectedAction = {
       type : 'COMPLETE_STEP',
       stepNum,
+      activeRecipe,
     }
 
-    expect(actions.completeStep(stepNum))
+    expect(actions.completeStep(stepNum,activeRecipe))
       .toExist()
       .toEqual(expectedAction)
   })

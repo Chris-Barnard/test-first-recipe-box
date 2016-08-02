@@ -46,7 +46,7 @@ export class Single extends Component {
       },
     }
 
-    const { viewer, onClick } = this.props
+    const { viewer } = this.props
 
     return (
       <div
@@ -61,7 +61,6 @@ export class Single extends Component {
         <div key='caption' style={styles.caption} className="singleCaption" >
           <p>
             {viewer.mainCaption}
-            {viewer.mode === 'title' && <button onClick={onClick} >Start</button>}
           </p>
         </div>
       </div>

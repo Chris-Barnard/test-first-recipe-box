@@ -61,7 +61,7 @@ export class StepList extends Component {
         fontSize : 20,
         borderRadius : 4,
         color : '#fff',
-        background : '#61DAFB',
+        background : '#FF4136',
         opacity : '0.8',
         visibility : 'hidden',
         active : {
@@ -70,7 +70,7 @@ export class StepList extends Component {
       }
     }
 
-    const { list, complete, toggleCompleteButton } = this.props
+    const { recipe, complete, toggleCompleteButton } = this.props
 
     return (
       <FlipMove
@@ -84,7 +84,7 @@ export class StepList extends Component {
         typeName="ul"
         className="stepList"
       >
-        {list.map((item, i) => {
+        {recipe.steps.map((item, i) => {
           return (
             <li className="stepCard"
               style={styles.card}
@@ -103,10 +103,7 @@ export class StepList extends Component {
                 style={m(
                 styles.closeButton,
                 item.showCloseButton && styles.closeButton.active
-              )} onClick={(e) => {
-                e.preventDefault()
-                return complete(item.id)
-              }} ><span>&times;</span></button>
+              )} onClick={() => complete(item.id, recipe)} ><span>&times;</span></button>
             </li>
           )
         })}

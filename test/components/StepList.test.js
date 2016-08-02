@@ -9,7 +9,9 @@ import StepList from '../../src/components/StepList'
 describe('components', () => {
 
   let minProps = {
-    list : [],
+    recipe : {
+      steps : [],
+    }
     // complete : expect.createSpy()
   }
   
@@ -40,10 +42,12 @@ describe('components', () => {
 
     it('should render the correct number of LI components', () => {
 
-      const list = [{ caption : 'Test Entry'},{ caption : 'Test 2'},{ caption : 'Test 3'}]
-
-      const wrapper = shallow(<StepList {...minProps} list={list} />)
-      expect(wrapper.find('li').length).toBe(list.length)
+      const steps = [{ caption : 'Test Entry'},{ caption : 'Test 2'},{ caption : 'Test 3'}]
+      const recipe = {
+        steps,
+      }
+      const wrapper = shallow(<StepList {...minProps} recipe={recipe} />)
+      expect(wrapper.find('li').length).toBe(recipe.steps.length)
 
     })
 
@@ -52,9 +56,12 @@ describe('components', () => {
 
     it('should handle a click on a StepCard component close button', () => {
 
-      const list = [{ caption : 'Test Entry', id : 1 },{ caption : 'Test 2', id : 2 },{ caption : 'Test 3', id : 3 }]
+      const steps = [{ caption : 'Test Entry', id : 1 },{ caption : 'Test 2', id : 2 },{ caption : 'Test 3', id : 3 }]
+      const recipe = {
+        steps,
+      }
       const click = expect.createSpy()
-      const wrapper = shallow(<StepList {...minProps} list={list} complete={click} />)
+      const wrapper = shallow(<StepList {...minProps} recipe={recipe} complete={click} />)
       let cards = wrapper.find('.stepCardCloseButton')
 
       expect(click.calls.length).toBe(0)
@@ -74,9 +81,12 @@ describe('components', () => {
 
     it('should handle call to function provided for onMouseOver and onMouseOut', () => {
 
-      const list = [{ caption : 'Test Entry', id : 1 },{ caption : 'Test 2', id : 2 },{ caption : 'Test 3', id : 3 }]
+      const steps = [{ caption : 'Test Entry', id : 1 },{ caption : 'Test 2', id : 2 },{ caption : 'Test 3', id : 3 }]
+      const recipe = {
+        steps,
+      }
       const click = expect.createSpy()
-      const wrapper = shallow(<StepList {...minProps} list={list} toggleCompleteButton={click} />)
+      const wrapper = shallow(<StepList {...minProps} recipe={recipe} toggleCompleteButton={click} />)
       let cards = wrapper.find('.stepCard')
 
       expect(click.calls.length).toBe(0)
@@ -93,8 +103,11 @@ describe('components', () => {
 
     it('should display the button when showCloseButton is true', () => {
 
-      const list = [{ caption : 'Test Entry', id : 1 },{ caption : 'Test 2', id : 2, showCloseButton : true },{ caption : 'Test 3', id : 3 }]
-      const wrapper = shallow(<StepList {...minProps} list={list} />)
+      const steps = [{ caption : 'Test Entry', id : 1 },{ caption : 'Test 2', id : 2, showCloseButton : true },{ caption : 'Test 3', id : 3 }]
+      const recipe = {
+        steps,
+      }
+      const wrapper = shallow(<StepList {...minProps} recipe={recipe} />)
 
       let stepCards = wrapper.find('.stepCardCloseButton')
       expect(stepCards.at(1).props().style.visibility).toBe('visible')
@@ -103,12 +116,15 @@ describe('components', () => {
 
     it('should accept time estimate from the list of steps object', () => {
 
-      const list = [{
+      const steps = [{
         id : 1,
         caption : 'woohoo',
         timeEstimate : 24,
       }]
-      const wrapper = shallow(<StepList {...minProps} list={list} />)
+      const recipe = {
+        steps,
+      }
+      const wrapper = shallow(<StepList {...minProps} recipe={recipe} />)
       expect(wrapper.find('.stepList').length).toBe(1)
       expect(wrapper.find('.timeEstimate').length).toBe(1)
       expect(wrapper.find('.timeEstimate').props().children[0]).toBe(24)
@@ -117,13 +133,15 @@ describe('components', () => {
 
     it('should accept an image in the stepdata to provide instead of the default', () => {
 
-      const list = [{
+      const steps = [{
         id : 1,
         caption : 'wooohoo',
         image : './burger.jpg',
       }]
-
-      const wrapper = shallow(<StepList {...minProps} list={list} />)
+      const recipe = {
+        steps,
+      }
+      const wrapper = shallow(<StepList {...minProps} recipe={recipe} />)
 
       const image = wrapper.find('img')
       expect(wrapper.find('.stepList').length).toBe(1)

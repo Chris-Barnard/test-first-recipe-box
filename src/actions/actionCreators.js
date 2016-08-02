@@ -29,10 +29,11 @@ export function toggleStepCloseButton(stepNum, value) {
   }
 }
 
-export function completeStep(stepNum) {
+export function completeStep(stepNum, activeRecipe) {
   return {
     type : 'COMPLETE_STEP',
     stepNum,
+    activeRecipe,
   }
 }
 

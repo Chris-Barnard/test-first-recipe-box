@@ -350,7 +350,7 @@ describe('reducers', () => {
       let expectedState = {
         activeRecipe : {
           steps : [],
-          showSteps : true,
+          // showSteps : true,
         },
         recipeList : [],
       }

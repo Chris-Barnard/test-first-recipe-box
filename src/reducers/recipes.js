@@ -67,10 +67,10 @@ function activeRecipeReducer(state, action) {
       return { ...item,
         steps : item.steps === undefined ? [] : item.steps,
       }
-    case 'BEGIN_STEP' :
-      return { ...state.activeRecipe,
-        showSteps : true
-      }
+    // case 'BEGIN_STEP' :
+    //   return { ...state.activeRecipe,
+    //     showSteps : true
+    //   }
     default : 
       return { ...state.activeRecipe,
         steps : state.activeRecipe.steps === undefined ? [] : state.activeRecipe.steps

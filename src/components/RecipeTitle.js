@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import FlipMove from 'react-flip-move'
+// import FlipMove from 'react-flip-move'
 
 export class RecipeTitle extends Component {
   render() {
@@ -37,26 +37,29 @@ export class RecipeTitle extends Component {
         },
         ingredients : {
           flex : 1,
-
         },
+      },
+      footer : {
+        display : 'flex',
+        width : '100%',
+        button : {
+          flex : 1,
+          fontSize : 20,
+          borderRadius : 4,
+          color : '#fff',
+          background : '#2ECC40',
+          opacity : '0.8',
+        }
       }
     }
 
-    const { activeRecipe } = this.props
-    // const customEnterAnimation = {
-    //   from: { transform: 'scale(0.5, 1)' },
-    //   to:   { transform: 'scale(1, 1)' }
-    // }
+    const { activeRecipe, start } = this.props
+
     return (
-      <FlipMove
-        easing="ease-in-out"
-        enterAnimation="accordianVertical"
-        leaveAnimation="accordianVertical"
-        duration={500}
-        staggerDurationBy={30}
-        staggerDelayBy={18}
+      <div        
         className="recipeTitle"
         style={styles.container}
+        key={activeRecipe.name}
       >
         <div key='titleCard' style={styles.card} >
           <div style={styles.header}>
@@ -71,8 +74,11 @@ export class RecipeTitle extends Component {
 
             </div>
           </div>
+          <div style={styles.footer}>
+            <button onClick={start} style={styles.footer.button} >Start Recipe!</button>
+          </div>
         </div>
-      </FlipMove>
+      </div>
     );
   }
 }
