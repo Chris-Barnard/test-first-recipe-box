@@ -35,3 +35,11 @@ export function completeStep(stepNum) {
     stepNum,
   }
 }
+
+export function beginStep(image, caption) {
+  return {
+    type : 'BEGIN_STEP',
+    image,
+    caption
+  }
+}

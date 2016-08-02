@@ -8,9 +8,10 @@ import * as actionCreators from '../src/actions/actionCreators'
 import Single from '../src/components/Single'
 import RecipeList from '../src/components/RecipeList'
 import StepList from '../src/components/StepList'
+import RecipeTitle from '../src/components/RecipeTitle'
 
 // for now loading this statically
-import image from './assets/photo.jpg'
+// import image from './assets/photo.jpg'
 import getRecipes from './data/api'
 
 function mapStateToProps(state) {
@@ -28,16 +29,16 @@ function mapDispatchToProps(dispatch) {
 export class App extends Component {
 
   componentDidMount() {
-    const { loadRecipes, selectRecipe } = this.props
+    const { loadRecipes } = this.props
     
     loadRecipes(getRecipes())
-    selectRecipe(100, image, 'Gotta start somewhere.  It might as well be beautiful!!')
+    // selectRecipe(100, image, 'Gotta start somewhere.  It might as well be beautiful!!')
 
   }
   
   render() {
     const { viewer, toggleHighlight, selectRecipe, recipeList,
-        activeRecipe, toggleStepCloseButton, completeStep } = this.props
+        activeRecipe, toggleStepCloseButton, completeStep, beginStep } = this.props
 
     return (
       <div className="App">
@@ -46,8 +47,10 @@ export class App extends Component {
           <h2>React and Redux - Test First Example</h2>
         </div>
         <div className="App-intro">
-          <Single image={viewer.mainImage} caption={viewer.mainCaption} />
-          <StepList list={activeRecipe.steps} complete={completeStep} toggleCompleteButton={toggleStepCloseButton} />
+          <Single viewer={viewer} onClick={() => beginStep(activeRecipe.steps[0].image, activeRecipe.steps[0].caption)} />
+          {viewer.mode === 'steps' && <StepList list={activeRecipe.steps} complete={completeStep} toggleCompleteButton={toggleStepCloseButton} />}
+          {viewer.mode === 'title' && <RecipeTitle activeRecipe={activeRecipe} />}
+          {/*<StepList list={activeRecipe.steps} complete={completeStep} toggleCompleteButton={toggleStepCloseButton} />*/}
           <RecipeList list={recipeList} toggleHighlight={toggleHighlight} select={selectRecipe} />
         </div>
       </div>

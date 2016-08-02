@@ -40,7 +40,35 @@ describe('reducers', () => {
 
       const expectedState = {
         mainImage : 'other.jpg',
-        mainCaption : 'sometimes a new day dawns'
+        mainCaption : 'sometimes a new day dawns',
+        mode : 'title',
+      }
+
+      expect(reducer(initialState, action))
+        .toExist()
+        .toEqual(expectedState)
+
+    })
+
+    // BEGIN_STEP
+
+    it('should handle action BEGIN_STEP', () => {
+
+      const initialState = {
+        mainImage : 'junk',
+        mainCaption : "the oldies aren't always goodies"
+      }
+
+      const action = {
+        type : 'BEGIN_STEP',
+        image : 'test',
+        caption : 'testing it out!!!'
+      }
+
+      const expectedState = {
+        mainImage : 'test',
+        mainCaption : 'testing it out!!!',
+        mode : 'steps',
       }
 
       expect(reducer(initialState, action))

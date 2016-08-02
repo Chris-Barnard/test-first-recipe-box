@@ -94,6 +94,24 @@ describe('actions', () => {
       .toEqual(expectedAction)
   })
 
+  // BEGIN_STEP
+  // ********************************
+
+  it('should create the BEGIN_STEP action', () => {
+
+    const image = { test : 123 }
+    const caption = 'wooohooooo!!!'
+    const expectedAction = {
+      type : 'BEGIN_STEP',
+      image,
+      caption,
+    }
+
+    expect(actions.beginStep(image, caption))
+      .toExist()
+      .toEqual(expectedAction)
+  })
+
   // NEXT_ACTION
   // ********************************
 

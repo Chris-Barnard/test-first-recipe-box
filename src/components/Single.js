@@ -1,16 +1,33 @@
 import React, { Component } from 'react';
+// import FlipMove from 'react-flip-move'
+
+function m() {
+  let res = {}
+  for (var i = 0; i < arguments.length; i++) {
+    if (arguments[i]) {
+      Object.assign(res, arguments[i])
+    }
+  }
+  return res
+}
 
 export class Single extends Component {
   render() {
-    const { image, caption } = this.props
 
     const styles = {
       container : {
         padding : 20,
+        paddingTop : 10,
         paddingRight : 10,
         backgroundColor : '#AAA',
         flex : '1 50%',
         border : 0,
+        // title : {
+        //   flex : '1 80%',
+        // },
+        // steps : {
+        //   flex : '1 50%'
+        // }
       },
       caption : {
         backgroundColor : 'white',
@@ -29,13 +46,23 @@ export class Single extends Component {
       },
     }
 
+    const { viewer, onClick } = this.props
+
     return (
-      <div style={styles.container} className="singleContainer">
-        <div style={styles.imageBox}>
-          <img style={styles.image} src={image} className="single-image" />
+      <div
+        style={m(styles.container
+          // viewer.mode === 'title' ? styles.container.title : styles.container.steps
+        )}
+        className="singleContainer"
+      >
+        <div key='image' style={styles.imageBox}>
+          <img style={styles.image} src={viewer.mainImage} className="single-image" />
         </div>
-        <div style={styles.caption} className="singleCaption">
-          <p>{caption}</p>
+        <div key='caption' style={styles.caption} className="singleCaption" >
+          <p>
+            {viewer.mainCaption}
+            {viewer.mode === 'title' && <button onClick={onClick} >Start</button>}
+          </p>
         </div>
       </div>
     );

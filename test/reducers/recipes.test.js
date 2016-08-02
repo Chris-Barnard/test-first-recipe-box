@@ -23,7 +23,8 @@ describe('reducers', () => {
       }
 
       expect(reducer(initialState, action)).toEqual(expectedState);
-
+      expect(initialState).toEqual(initialState)
+      expect(action).toEqual(action)
     })
 
     // LOAD_RECIPES
@@ -43,13 +44,15 @@ describe('reducers', () => {
       }
 
       let expectedState = { activeRecipe : {
+          name : 'Chicken Thighs',
+          images : [],
           steps : [],
-        }, recipeList : [{ name : 'Chicken Thighs', images : [] }] }
+        }, recipeList : [{ name : 'Chicken Thighs', images : [], isSelected : true }] }
 
       expect(reducer(initialState, action))
         .toExist()
         .toEqual(expectedState);
-    
+
     });
 
     // TOGGLE_HIGHLIGHT
@@ -166,6 +169,9 @@ describe('reducers', () => {
         .toEqual(expectedState);
     
     });
+
+    // TOGGLE_HIGHLIGHT
+    // ********************************    
 
     it("it shouldn't lose the activeRecipe.steps when another action fires", () => {
 
@@ -322,6 +328,35 @@ describe('reducers', () => {
       }
 
       expect(reducer(initialState, action)).toEqual(expectedState)
+    })
+
+    // Handle action BEGIN_STEP
+    // ********************************
+
+    it('should handle action BEGIN_STEP', () => {
+
+      let initialState = {
+        activeRecipe : {
+          steps : [],
+        }
+      }
+
+      let action = {
+        type : 'BEGIN_STEP',
+        image : 'test',
+        caption : 'test it out',
+      }
+
+      let expectedState = {
+        activeRecipe : {
+          steps : [],
+          showSteps : true,
+        },
+        recipeList : [],
+      }
+
+      expect(reducer(initialState, action)).toEqual(expectedState)
+
     })
 
   });

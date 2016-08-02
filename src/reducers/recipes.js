@@ -16,7 +16,11 @@ function recipeReducer(state, action) {
 const recipeListReducer = (state = [], action) => {
   switch(action.type) {
     case 'LOAD_RECIPES' :
-      return action.data
+      // Using JSON to allow me to copy my data to incoming by value and 
+      // and not by reference - weird bug
+      const incoming = JSON.parse(JSON.stringify(action.data))
+      incoming[0].isSelected = true
+      return incoming
     default:
       return state.map((state) => recipeReducer(state, action))
   }
@@ -41,7 +45,7 @@ function activeRecipeReducer(state, action) {
   switch(action.type) {
     case 'SELECT_RECIPE' :
       let item = state.recipeList.filter((item) => item.id === action.id).pop()
-      return {...item, 
+      return { ...item, 
         isSelected : true,
         steps : item.steps === undefined ? [] : item.steps
       }
@@ -57,6 +61,15 @@ function activeRecipeReducer(state, action) {
           ...state.activeRecipe.steps.slice(0, index),
           ...state.activeRecipe.steps.slice(index + 1)
         ]
+      }
+    case 'LOAD_RECIPES' :
+      item = action.data[0]
+      return { ...item,
+        steps : item.steps === undefined ? [] : item.steps,
+      }
+    case 'BEGIN_STEP' :
+      return { ...state.activeRecipe,
+        showSteps : true
       }
     default : 
       return { ...state.activeRecipe,

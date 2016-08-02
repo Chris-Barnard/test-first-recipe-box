@@ -21,8 +21,9 @@ export class RecipeList extends Component {
         flex : '1 20%',
         listStyleType : 'none',
         background : '#222',
-        margin : 0,
+        marginTop : -1,
         padding : 6,
+        paddingTop : 11,
         position : 'relative',
       }, 
       item : {

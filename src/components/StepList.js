@@ -22,7 +22,7 @@ export class StepList extends Component {
         listStyleType : 'none',
         background : '#AAA',
         margin : 0,
-        paddingTop : 20,
+        paddingTop : 0,
         paddingLeft : 0,
         border : 0,
       },

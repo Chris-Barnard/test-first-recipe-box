@@ -11,7 +11,10 @@ expect.extend(expectJSX)
 describe('components', () => {
 
   let minProps = {
-    // image
+    viewer : {
+      mainImage : 'test',
+      mainCaption : 'test it',
+    }
   }
   
   describe('Single component', () => {
@@ -21,7 +24,7 @@ describe('components', () => {
 
     it('should render without blowing up', () => {
 
-      const wrapper = shallow(<Single />)
+      const wrapper = shallow(<Single {...minProps} />)
       expect(wrapper.find('.singleContainer').length).toBe(1)
 
     })
@@ -31,8 +34,11 @@ describe('components', () => {
 
     it('should display an image from props', () => {
 
-      const image = { xyz : '123' }
-      const wrapper = shallow(<Single image={image} />)
+      const mainImage = { xyz : '123' }
+      const viewer = {
+        mainImage,
+      }
+      const wrapper = shallow(<Single viewer={viewer} />)
 
       expect(wrapper.find('img').length).toBe(1)
 
@@ -43,11 +49,14 @@ describe('components', () => {
 
     it('should render the caption panel', () => {
 
-      const caption = 'Here we go.  Everyone is sure to love these!'
+      const mainCaption = 'Here we go.  Everyone is sure to love these!'
+      const viewer = {
+        mainCaption,
+      }
 
-      const wrapper = shallow(<Single caption={caption} />)
+      const wrapper = shallow(<Single viewer={viewer} />)
       expect(wrapper.find('.singleCaption').length).toBe(1)
-      expect(wrapper.find('p').text()).toBe(caption)
+      expect(wrapper.find('p').text()).toBe(mainCaption)
 
     })
 

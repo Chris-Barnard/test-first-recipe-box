@@ -8,6 +8,7 @@ import connectedApp, { App } from '../src/App.js'
 import Single from '../src/components/Single'
 import RecipeList from '../src/components/RecipeList'
 import StepList from '../src/components/StepList'
+import RecipeTitle from '../src/components/RecipeTitle'
 
 describe('Main App Body', () => {
 
@@ -67,10 +68,24 @@ describe('Main App Body', () => {
   // *********************************
 
   it('should render the StepList component', () => {
-
-    const wrapper = shallow(<App {...minProps} />)
+    const viewer = {
+      mode : 'steps'
+    }
+    const wrapper = shallow(<App {...minProps} viewer={viewer} />)
     expect(wrapper.find(StepList).length).toBe(1)
 
+  })
+
+  // Render the RecipeTitle component
+  // ************************************
+
+  it('should render the RecipeTitle component', () => {
+    const viewer = {
+      mode : 'title'
+    }
+
+    const wrapper = shallow(<App {...minProps} viewer={viewer} />)
+    expect(wrapper.find(RecipeTitle).length).toBe(1)
   })
 
 })
