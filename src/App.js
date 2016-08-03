@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import FlipMove from 'react-flip-move'
-import logo from './assets/logo.svg';
+// import logo from './assets/logo.svg';
 import './assets/App.css';
 
 import { connect } from 'react-redux';
@@ -57,10 +57,21 @@ export class App extends Component {
       <div className="App">
         <div className="App-header">
           {/*<img src={logo} className="App-logo" alt="logo" />*/}
-          <h2>React and Redux - Test First Example</h2>
+          <h2>My Recipe Box</h2>
         </div>
         <div className="App-intro">
-          <Single viewer={viewer} />
+          <FlipMove
+            easing="ease-in-out"
+            enterAnimation="elevator"
+            leaveAnimation="elevator"
+            duration={500}
+            staggerDurationBy={30}
+            staggerDelayBy={18}
+            style={styles.container}
+            className="singleWrapper"
+          >
+            <Single viewer={viewer} />
+          </FlipMove>
           <FlipMove
             easing="ease-in-out"
             enterAnimation="elevator"

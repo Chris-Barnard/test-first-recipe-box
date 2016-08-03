@@ -16,18 +16,14 @@ export class Single extends Component {
 
     const styles = {
       container : {
+        // position : 'fixed',
         padding : 20,
         paddingTop : 10,
-        paddingRight : 10,
+        paddingRight : 11,
         backgroundColor : '#AAA',
-        flex : '1 50%',
+        flex : '1 40%',
         border : 0,
-        // title : {
-        //   flex : '1 80%',
-        // },
-        // steps : {
-        //   flex : '1 50%'
-        // }
+        marginRight : -1,
       },
       caption : {
         backgroundColor : 'white',
@@ -37,6 +33,7 @@ export class Single extends Component {
         boxShadow : '1 2 4 rgba(0, 0, 0, 0.2)',
       },
       image : {
+        // position : 'fixed',
         width : '100%',
         borderRadius : 6,
         boxShadow : '1 2 4 rgba(0, 0, 0, 0.2)',

@@ -25,6 +25,7 @@ export class RecipeList extends Component {
         padding : 6,
         paddingTop : 11,
         position : 'relative',
+        marginBottom : 0,
       }, 
       item : {
         width : '100%',

@@ -38,7 +38,7 @@ describe('Main App Body', () => {
     renderer.render(<App {...minProps} />)
     let actualOutput = renderer.getRenderOutput()
 
-    let expectedResult = <h2>React and Redux - Test First Example</h2>
+    let expectedResult = <h2>My Recipe Box</h2>
 
     expect(actualOutput).toIncludeJSX(expectedResult)
 

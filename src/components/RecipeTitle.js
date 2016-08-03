@@ -6,7 +6,8 @@ export class RecipeTitle extends Component {
 
     const styles = {
       container : {
-        flex : '1 30%',
+        // position : 'fixed',
+        flex : '1 40%',
         background : '#AAA',
         margin : 0,
         paddingTop : 0,
@@ -30,18 +31,37 @@ export class RecipeTitle extends Component {
         display : 'flex',
         width : '100%',
         timeEstimate : {
-          flex : 1,
+          fontSize : 16,
+          flex : '1 35%',
           text : {
             margin : 3,
           }
         },
         ingredients : {
-          flex : 1,
+          flex : '1 65%',
+          listStyleType : 'none',
+          margin : 0,
+          padding : 0,
+          fontSize : 12,
+          container : {
+            display : 'flex',
+            padding : 0,
+            margin : 0,
+          },
+          item : {
+            flex : 1,
+            paddingRight : 4,
+          },
+          amount : {
+            flex : 1,
+            paddingLeft : 4,
+          },
         },
       },
       footer : {
         display : 'flex',
         width : '100%',
+        paddingTop : 10,
         button : {
           flex : 1,
           fontSize : 20,
@@ -49,6 +69,7 @@ export class RecipeTitle extends Component {
           color : '#fff',
           background : '#2ECC40',
           opacity : '0.8',
+          padding : 10,
         }
       }
     }
@@ -67,12 +88,23 @@ export class RecipeTitle extends Component {
           </div>
           <div style={styles.body}>
             <div style={styles.body.timeEstimate}>
-              <h5 style={styles.body.timeEstimate.text} >Prep Time : 45 minutes</h5>
-              <h5 style={styles.body.timeEstimate.text} >Cook Time : 12 minutes</h5>
+              <h6 style={styles.body.timeEstimate.text} >Prep Time : {activeRecipe.prepTime}</h6>
+              <h6 style={styles.body.timeEstimate.text} >Cook Time : {activeRecipe.cookTime}</h6>
             </div>
-            <div style={styles.body.ingredients}>
-
-            </div>
+            <ul style={styles.body.ingredients}>
+              {activeRecipe.ingredients.map((ingredient, i) => {
+                return (
+                  <li key={i*1000} style={styles.body.ingredients.container} >
+                    <div style={styles.body.ingredients.item} >
+                      {ingredient.item}
+                    </div>
+                    <div style={styles.body.ingredients.amount} >
+                      {ingredient.amount}
+                    </div>
+                  </li>
+                )
+              } )}
+            </ul>
           </div>
           <div style={styles.footer}>
             <button onClick={start} style={styles.footer.button} >Start Recipe!</button>

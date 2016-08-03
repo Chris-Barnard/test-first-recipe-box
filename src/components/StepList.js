@@ -18,7 +18,7 @@ export class StepList extends Component {
 
     const styles = {
       container : {
-        flex : '1 30%',
+        flex : '1 40%',
         listStyleType : 'none',
         background : '#AAA',
         margin : 0,

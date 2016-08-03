@@ -12,6 +12,19 @@ export default function getRecipes() {
 		id : 100,
 		mainImage : photo,
 		mainCaption : 'Oh boy! These will be amazing!',
+		prepTime : '35 mins',
+		cookTime : '14 mins',
+		ingredients : [{
+			item : 'Chicken Thighs',
+			amount : '1 package',
+		},{
+			item : 'Salad Dressing',
+			amount : '1/4 - 1/3 bottle'
+		},{
+			item : 'Garlic',
+			// optional : true,
+			amount : '1 clove (minced)',
+		}],
 		isHighlighted : false,
 		isSelected : false,
 		steps : [{
